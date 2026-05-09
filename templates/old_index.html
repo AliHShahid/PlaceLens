@@ -1,0 +1,60 @@
+<!-- {% extends 'base.html' %}
+
+{% block content %}
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-10">
+
+    <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
+        <h2 class="text-xl font-semibold mb-4 text-blue-300">1. Upload Image</h2>
+
+        <div id="drop-zone"
+            class="border-2 border-dashed border-gray-600 rounded-lg p-10 text-center hover:border-blue-500 transition-colors cursor-pointer relative">
+            <input type="file" id="file-input" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                accept="image/*">
+            <div id="upload-placeholder">
+                <svg class="w-12 h-12 mx-auto text-gray-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                    </path>
+                </svg>
+                <p class="text-gray-400">Drag & Drop or Click to Upload</p>
+                <p class="text-xs text-gray-500 mt-2">Supports JPG, PNG</p>
+            </div>
+            <img id="preview-img" class="hidden max-h-64 mx-auto rounded shadow-md mt-4" />
+        </div>
+
+        <button id="search-btn"
+            class="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded transition-colors hidden">
+            Analyze Location
+        </button>
+    </div>
+
+    <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700 relative">
+        <h2 class="text-xl font-semibold mb-4 text-green-300">2. Analysis Results</h2>
+
+        <div id="loader"
+            class="hidden absolute inset-0 bg-gray-800 bg-opacity-90 flex flex-col items-center justify-center z-10 rounded-xl">
+            <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"></div>
+            <p class="text-blue-400 mt-4">Running Neural Search...</p>
+        </div>
+
+        <div id="empty-state" class="text-center text-gray-500 py-20">
+            Results will appear here.
+        </div>
+
+        <div id="results-content" class="hidden fade-in">
+            <h3 id="place-name" class="text-3xl font-bold text-white mb-1"></h3>
+            <p id="place-country" class="text-sm text-blue-400 mb-4 font-mono uppercase tracking-wide"></p>
+
+            <p id="place-desc" class="text-gray-300 mb-6 leading-relaxed"></p>
+
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-green-900 text-green-300 text-xs px-2 py-1 rounded border border-green-700">
+                    Confidence: <span id="confidence-score"></span>
+                </span>
+            </div>
+
+            <div id="map" class="shadow-inner border border-gray-600"></div>
+        </div>
+    </div>
+</div>
+{% endblock %} -->

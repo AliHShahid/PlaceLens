@@ -1,0 +1,12 @@
+venv/
+media/
+staticfiles/
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.log
+.git/
+.gitignore
+.vscode/
+.idea/
+places.index

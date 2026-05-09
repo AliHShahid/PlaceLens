@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Place Lens - AI Landmark Identification</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#ee8c2b",
+                        "primary-dark": "#d67615",
+                        "surface": "#ffffff",
+                        "surface-variant": "#f4f2f0",
+                        "on-surface": "#181411",
+                        "on-surface-variant": "#897561",
+                        "outline": "#e6e0db",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "1.5rem",
+                        "xl": "2rem",
+                        "2xl": "3rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'elevation-1': '0 1px 3px 1px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.3)',
+                        'elevation-2': '0 2px 6px 2px rgba(0, 0, 0, 0.15), 0 1px 2px 0 rgba(0, 0, 0, 0.3)',
+                        'elevation-3': '0 4px 8px 3px rgba(0, 0, 0, 0.15), 0 1px 3px 0 rgba(0, 0, 0, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: "Space Grotesk", sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface flex flex-col min-h-screen overflow-x-hidden">
+<!-- Navigation -->
+<header class="sticky top-0 z-50 w-full bg-surface/90 backdrop-blur-md border-b border-surface-variant">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-20">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-3xl">view_in_ar</span>
+</div>
+<span class="text-2xl font-bold tracking-tight text-on-surface">Place Lens</span>
+</div>
+<!-- Desktop Nav -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-on-surface hover:text-primary transition-colors" href="#">Features</a>
+<a class="text-sm font-medium text-on-surface hover:text-primary transition-colors" href="#">Technology</a>
+<a class="text-sm font-medium text-on-surface hover:text-primary transition-colors" href="#">About</a>
+</nav>
+<!-- Actions -->
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex text-sm font-medium text-on-surface hover:text-primary transition-colors">Sign In</button>
+<button class="flex items-center justify-center h-10 px-6 bg-primary hover:bg-primary-dark text-white text-sm font-bold rounded-full transition-all shadow-elevation-1 hover:shadow-elevation-2">
+                        Get Started
+                    </button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+<!-- Left Content -->
+<div class="flex flex-col gap-8 max-w-2xl">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 w-fit">
+<span class="material-symbols-outlined text-primary text-sm">auto_awesome</span>
+<span class="text-xs font-bold text-primary uppercase tracking-wider">AI Powered Vision</span>
+</div>
+<h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight text-on-surface">
+                            SEE PAKISTAN <br/>
+                            THROUGH <span class="text-primary">AI LENS</span>
+</h1>
+<p class="text-lg sm:text-xl text-on-surface-variant leading-relaxed max-w-lg">
+                            Instantly identify landmarks, historical sites, and natural wonders across Pakistan with our advanced neural vision technology.
+                        </p>
+<div class="flex flex-col sm:flex-row gap-4 pt-4">
+<button class="flex items-center justify-center h-14 px-8 bg-primary hover:bg-primary-dark text-white text-base font-bold rounded-full transition-all shadow-elevation-2 hover:shadow-elevation-3">
+<span class="material-symbols-outlined mr-2">rocket_launch</span>
+                                Launch Dashboard
+                            </button>
+<button class="flex items-center justify-center h-14 px-8 bg-surface border border-outline hover:bg-surface-variant text-on-surface text-base font-bold rounded-full transition-all">
+<span class="material-symbols-outlined mr-2">play_circle</span>
+                                Watch Demo
+                            </button>
+</div>
+<div class="flex items-center gap-4 pt-4 text-sm text-on-surface-variant">
+<div class="flex -space-x-2">
+<img alt="User Avatar 1" class="w-8 h-8 rounded-full border-2 border-surface object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQu_3YL9VvPVoJMP76gjtZYTFktVSiaaauhfeugeRKTfmaVhr19KtA0dGYVGsb1vISGNcKqYIspf-mbRFBmF304mqt0L9-39E9JkxeK8glktt1B7ccDBCZPDcXWzlJMUHc1zGO2kcf9OfiZYWimG0_TK7BxpUQ89KxdVwnheRf5C1D4McyO3Ec0BFiWEuaReL4xHq9YTG9B9fyVeD97seEbgEaj2OwKcHKIYMgt8pGFWzJUuRkHaZZA7x8JlkpInZWQhrr3Ar8CuI"/>
+<img alt="User Avatar 2" class="w-8 h-8 rounded-full border-2 border-surface object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPmtfifX1tU9zbHGM4bihIj-3Gv6izqgA_Ees5Lr9RM3p4U1lPWCmGopj2j7fOTO6_Tq0t-j6xGFWWmm1ib5EkGUgyvjt6kdV3hFwDNU3cgFfufZE2hg5M4r9d6apOEoDp7aMAcXywbVDFSqWO0Mtn-GgYhblYXLN8chwdL2WQtz7UUG0BV3qFazmarPiWUoh2jP1410Y-GTM03MNfAbGL3IAVhgzflHdGWfkZn8s6mrLl35wT9UtD6utmtmzarZsRY_ViVLINakU"/>
+<img alt="User Avatar 3" class="w-8 h-8 rounded-full border-2 border-surface object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmjzMTWBAZqDAZw-Gk323JUjuoLFqZKZ4Uq_y_6FhdquW32d_qeleGvvYGgtgeMgrOMQo9ArxGszkOnJNK_BGW9F_BeMsjaTTPddT9zhfh6ygdSCNb-TYp7gWZFSXE3Kj7OxELqXSr7lXZZ-JV4XFoqja70gNCKpstvEo3v_q54Jsje33AQYswlbLFhBJJ8NTMCcsRYtWpj-RV-JegNEAIcxmxDu6WVjiISDQtFYNqQ0sOCkC2Rhz1h8YLykyfJ0x0Tx5C-mYkkho"/>
+</div>
+<p>Trusted by <span class="font-bold text-on-surface">10,000+</span> travelers</p>
+</div>
+</div>
+<!-- Right Visual (AI Preview Card) -->
+<div class="relative w-full h-full min-h-[400px] lg:min-h-[600px] flex items-center justify-center">
+<!-- Decorative Background Blob -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-tr from-primary/20 via-orange-100/50 to-transparent rounded-full blur-3xl -z-10"></div>
+<!-- Main Card -->
+<div class="relative w-full max-w-md bg-white rounded-2xl shadow-elevation-3 overflow-hidden border border-surface-variant p-3">
+<div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-gray-100 group">
+<img alt="Majestic Badshahi Mosque in Lahore with red brick architecture and large courtyard" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbIY7GmFzB1PHlBxxLr_9rGl_8pMxHbBHWuFhCAkw8CYVnxyL1lbPGZcwuPb4zq6QNU9r1cW9-8-R4XyAtpyvEPKGO6W9Cgqe7wMOi-g8wJmK7nxFe_t0BY9QWG2uGmSHbajiDtEqhqEMOK2VT3IlJ3DrCZV3qudmDLaCZrIhkrLp_plVWbz544I28rXuU59vY-Bv2QtsgQh3jT-zLzoMrEBgtmv3FXnkjbWZHaGY2Qs0xIu9wc7Z7VXeq7DPNKHZthccf1xMtXCc"/>
+<!-- AI Overlay UI -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- Scanning Effect -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50 animate-[scan_3s_ease-in-out_infinite]"></div>
+<!-- Bounding Box -->
+<div class="absolute top-[25%] left-[15%] w-[70%] h-[40%] border-2 border-primary rounded-lg shadow-[0_0_15px_rgba(238,140,43,0.5)] bg-primary/5 flex flex-col justify-between p-2">
+<!-- Top corners -->
+<div class="absolute -top-1 -left-1 w-3 h-3 border-t-4 border-l-4 border-primary rounded-tl-sm"></div>
+<div class="absolute -top-1 -right-1 w-3 h-3 border-t-4 border-r-4 border-primary rounded-tr-sm"></div>
+<!-- Bottom corners -->
+<div class="absolute -bottom-1 -left-1 w-3 h-3 border-b-4 border-l-4 border-primary rounded-bl-sm"></div>
+<div class="absolute -bottom-1 -right-1 w-3 h-3 border-b-4 border-r-4 border-primary rounded-br-sm"></div>
+<!-- Tag -->
+<div class="self-start bg-primary text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm flex items-center gap-1 backdrop-blur-sm">
+<span class="material-symbols-outlined text-[14px]">location_on</span>
+                                            Badshahi Mosque
+                                        </div>
+</div>
+<!-- Data Floating Card -->
+<div class="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-md rounded-xl p-4 shadow-lg border border-white/50 animate-[fadeInUp_0.6s_ease-out_0.5s_both]">
+<div class="flex justify-between items-start mb-2">
+<div>
+<h3 class="text-sm font-bold text-on-surface">Object Identified</h3>
+<p class="text-xs text-on-surface-variant">Mughal Era Architecture</p>
+</div>
+<span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-md border border-green-200">98.5% Match</span>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-3">
+<div class="bg-surface-variant rounded-lg p-2">
+<p class="text-[10px] uppercase text-on-surface-variant font-bold mb-1">Built Year</p>
+<p class="text-xs font-medium text-on-surface">1673 AD</p>
+</div>
+<div class="bg-surface-variant rounded-lg p-2">
+<p class="text-[10px] uppercase text-on-surface-variant font-bold mb-1">Location</p>
+<p class="text-xs font-medium text-on-surface">Lahore, PK</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card Footer Controls -->
+<div class="flex items-center justify-between pt-3 px-1">
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="text-xs font-medium text-on-surface-variant">Live Analysis</span>
+</div>
+<div class="flex gap-2">
+<button class="p-1.5 rounded-full hover:bg-surface-variant text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-lg">share</span>
+</button>
+<button class="p-1.5 rounded-full hover:bg-surface-variant text-on-surface-variant transition-colors">
+<span class="material-symbols-outlined text-lg">info</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Grid -->
+<section class="py-20 bg-surface-variant/30">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<h2 class="text-3xl md:text-4xl font-bold mb-4 text-on-surface">Advanced Features</h2>
+<p class="text-on-surface-variant">Discover the power of neural vision technology tailored specifically for identifying and learning about Pakistani heritage.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<div class="bg-surface p-8 rounded-2xl border border-surface-variant shadow-sm hover:shadow-elevation-2 transition-shadow group">
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">visibility</span>
+</div>
+<h3 class="text-xl font-bold mb-3 text-on-surface">Instant Recognition</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Identify monuments, architecture, and natural landmarks in milliseconds with industry-leading accuracy using our edge-computing models.
+                        </p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface p-8 rounded-2xl border border-surface-variant shadow-sm hover:shadow-elevation-2 transition-shadow group">
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">menu_book</span>
+</div>
+<h3 class="text-xl font-bold mb-3 text-on-surface">Historical Context</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Don't just see the name. Get deep historical insights, architectural facts, and cultural significance stories instantly on your screen.
+                        </p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface p-8 rounded-2xl border border-surface-variant shadow-sm hover:shadow-elevation-2 transition-shadow group">
+<div class="w-14 h-14 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-3xl">wifi_off</span>
+</div>
+<h3 class="text-xl font-bold mb-3 text-on-surface">Offline Capability</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Traveling to remote northern areas? Access core identification features and saved databases even without an active internet connection.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24 bg-surface">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-on-surface rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
+<div class="absolute bottom-0 left-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
+<div class="relative z-10 max-w-3xl mx-auto">
+<h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Ready to explore Pakistan?</h2>
+<p class="text-gray-400 mb-10 text-lg">Join thousands of explorers using Place Lens to uncover the stories hidden in plain sight.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="h-14 px-8 bg-primary hover:bg-primary-dark text-white text-base font-bold rounded-full transition-all shadow-lg hover:shadow-primary/50">
+                                Get Started for Free
+                            </button>
+<button class="h-14 px-8 bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white border border-white/20 text-base font-bold rounded-full transition-all">
+                                View API Documentation
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-variant/30 border-t border-surface-variant pt-16 pb-8">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+<div class="col-span-2 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-xl">view_in_ar</span>
+</div>
+<span class="text-xl font-bold text-on-surface">Place Lens</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">
+                        Empowering travelers to see the world with new eyes through the power of artificial intelligence.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white border border-outline flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors" href="#">
+<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg>
+</a>
+<a class="w-10 h-10 rounded-full bg-white border border-outline flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary transition-colors" href="#">
+<svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path clip-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.373c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" fill-rule="evenodd"></path></svg>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-6">Product</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Technology</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">API Access</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-6">Company</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Blog</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-on-surface mb-6">Legal</h4>
+<ul class="space-y-4 text-sm text-on-surface-variant">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cookie Policy</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-outline pt-8 text-center text-sm text-on-surface-variant">
+<p>© 2024 Place Lens. All rights reserved.</p>
+</div>
+</div>
+</footer>
+<!-- Custom Keyframe Animations -->
+<style>
+        @keyframes scan {
+            0% { top: 0%; opacity: 0; }
+            5% { opacity: 0.5; }
+            95% { opacity: 0.5; }
+            100% { top: 100%; opacity: 0; }
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 20px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+    </style>
+</body></html>
