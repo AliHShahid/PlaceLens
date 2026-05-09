@@ -4,11 +4,11 @@ PlaceLens is a Django-based landmark search app that uses image embeddings and F
 
 ## Screenshots
 
-![PlaceLens screenshot 1](ReadmePIcs/image3.png)
+![PlaceLens screenshot 1](ReadmePIcs/image.png)
 
 ![PlaceLens screenshot 2](ReadmePIcs/image2.png)
 
-![PlaceLens screenshot 3](ReadmePIcs/image.png)
+![PlaceLens screenshot 3](ReadmePIcs/image3.png)
 
 ## What It Does
 
